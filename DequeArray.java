@@ -63,6 +63,7 @@ public class DequeArray<T>{
 		rightSize++;
 	}
 	public T popLeft(){
+		if(rightSize + leftSize == 0) throw new IllegalStateException();
 		if(leftSize == 0) {
 			T ret = rightArray[(++rightBegin) % rightArray.length];
 			rightArray[rightBegin % rightArray.length] = null;
@@ -75,6 +76,7 @@ public class DequeArray<T>{
 		return ret;
 	}
 	public T popRight(){
+		if(rightSize + leftSize == 0) throw new IllegalStateException();
 		if(rightSize == 0) {
 			T ret = leftArray[(++leftBegin) % leftArray.length];
 			leftArray[leftBegin % leftArray.length] = null;
