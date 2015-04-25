@@ -3,14 +3,14 @@ class StackArray<T>{
 		int N; // count;
 		
 		private void doubleArray(){
-			T[] newData = (T[])new Object[data.length*2];
+			T[] newData = (T[]) new Object[data.length*2];
 			for(int i = 0; i < N; ++i){
 				newData[i] = data[i];
 			}
 			data = newData;
 		}
 		private void halfArray(){
-			T[] newData = (T[])new Object[data.length/2];
+			T[] newData = (T[]) new Object[data.length/2];
 			for(int i = 0; i < N; ++i){
 				newData[i] = data[i];
 			}
