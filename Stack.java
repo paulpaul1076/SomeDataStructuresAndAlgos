@@ -1,11 +1,23 @@
-public class Stack<T>{
+import java.util.Iterator;
+
+public class Stack<T> implements Iterable<T>{
 	class Node{
 		T item;
 		Node next;
 	}
-	Node first, last;
-	int N; // count;
+	private Node first, last;
+	private int N = 0; // count;
+	
+	public Stack(){}
+	
+	public Stack(Stack<T> that){
+		for(Iterator<T> it = that.iterator(); it.hasNext();){
+			this.push(it.next());
+		}
+	}
+	
 	T peek(){
+		if(last == null) throw new IllegalStateException();
 		return last.item;
 	}
 	void push(T item){
@@ -49,7 +61,21 @@ public class Stack<T>{
 		
 		return ret;
 	}
-	int getLength(){
+	int getSize(){
 		return N;
+	}
+	public Iterator<T> iterator() {
+		return new StackIterator();
+	}
+	private class StackIterator implements Iterator<T>{
+		Node curNode = first;
+		public boolean hasNext() {
+			return curNode != null;
+		}
+		public T next() {
+			T ret = curNode.item;
+			curNode = curNode.next;
+			return ret;
+		}
 	}
 }

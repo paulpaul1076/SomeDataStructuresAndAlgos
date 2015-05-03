@@ -2,6 +2,16 @@ public class QueueArray<T>{
 	private int N, begin = -1, end = -1;
 	private T[] data = (T[]) new Object[2];
 	
+	public QueueArray(){}
+	
+	public QueueArray(QueueArray<T> that){
+		this.data = (T[]) new Object[that.data.length];
+		this.N = that.N;
+		for(int i = 0; i < N; ++i){
+			this.data[i] = that.data[i];
+		}
+	}
+	
 	public void enqueue(T x){
 		if(N == data.length) doubleSize();
 		data[(++end) % data.length] = x;
