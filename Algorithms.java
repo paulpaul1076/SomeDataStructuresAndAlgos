@@ -4,10 +4,56 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-
 public class Algorithms {
+	public static void randomFillInteger(Integer[] a, int from, int to){
+		for(int i = 0; i < a.length; ++i){
+			a[i] = getRandomInt(from, to);
+		}
+	}
+	public static void randomFillInt(int[] a, int from, int to){
+		for(int i = 0; i < a.length; ++i){
+			a[i] = getRandomInt(from, to);
+		}
+	}
+	public static int fibSearch(int[] a, int x){
+		int f1 = 1, f2 = 0, mid = 2;
+		while(f1 < a.length){
+			f1 = f1 + f2;
+			f2 = f1 - f2;
+			mid++;
+		}
+
+		int first = 0;
+		mid--;
+		f2 = f1 - f2;
+		f1 = f1 - f2;
+
+		while(mid > 0){
+			int index = first + f1;
+			if(index >= a.length || a[index] > x){
+				mid--;
+				f2 = f1 - f2;
+				f1 = f1 - f2;
+			}
+			else if(a[index] == x){
+				return index;
+			}
+			else{
+				first = index;
+				mid = mid - 2;
+				f1 = f1 - f2;
+				f2 = f2 - f1;
+					//why not write
+					//mid = mid - 1;
+					//f2 = f1 - f2;
+					//f1 = f1 - f2;
+			}
+		}
+		return -1;
+	}
+
 	// can generate N! permutations
-	static <T> void shufftArray(T[] a, int from, int to){
+	static <T> void shuffleArray(T[] a, int from, int to){
 		for(int i = from; i < to; ++i){
 			for(int j = i; j < to; ++j){
 				//find random
@@ -274,5 +320,10 @@ public class Algorithms {
 			//System.out.println(a[mid - 1] + ", " + a[mid] + ", " + a[mid + 1]);
 		}
 		return null;
+	}
+	public static int gcd(int p, int q){
+		if(q == 0) return q;
+		int r = p % q;
+		return gcd(q, r);
 	}
 }

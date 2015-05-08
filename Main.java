@@ -1,42 +1,74 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
-    static void doublingTest(int N, boolean intOrInteger){
-        if(intOrInteger){
-            Integer[] testSub = new Integer[N];
-            for(int i = 0; i < N; ++i){
-                testSub[i] = Algorithms.getRandomInt(0, N);
-            }
-        }
-        else{
-            int[] testSub = new int[N];
-            for(int i = 0; i < N; ++i){
-                testSub[i] = Algorithms.getRandomInt(0, N);
-            }
-        }
+    static double sortTestInsertionSort(Integer[] a, int T){
+        long total = 0;
+        //for(int i = 0; i < T; ++i){
+            //Integer[] a = new Integer[N];
+            //Algorithms.randomFillInteger(a, 0, N);
+            StopWatch sw = new StopWatch();
+            Sorts.insertionSort(a);
+            total += sw.getElapsedMillis();
+        //}
+        return ((double)total);// / T;
     }
-    static void doublingTestStack(int N, boolean flag){
-        if(flag){
-            StackArray<Integer> st = new StackArray<Integer>();
-            for(int i = 0; i < N; ++i){
-                st.push(Algorithms.getRandomInt(0, N));
-            }
-            for(int i = 0; i < N; ++i){
-                st.pop();
-            }
+    static double sortTestInsertionSortPrimitive(int[] a, int T){
+        long total = 0;
+        for(int i = 0; i < T; ++i){
+            //int[] a = new int[N];
+            //Algorithms.randomFillInt(a, 0, N);
+            StopWatch sw = new StopWatch();
+            Sorts.insertionSortPrimitive(a);
+            total += sw.getElapsedMillis();
         }
-        else{
-            IntStack st = new IntStack();
-            for(int i = 0; i < N; ++i){
-                st.push(Algorithms.getRandomInt(0, N));
-            }
-            for(int i = 0; i < N; ++i){
-                st.pop();
-            }
+        return ((double)total) / T;
+    }
+    static double sortTestSelectionSort(Integer[] a, int T){
+        long total = 0;
+       // for(int i = 0; i < T; ++i){
+            //Integer[] a = new Integer[N];
+            //Algorithms.randomFillInteger(a, 0, N);
+            StopWatch sw = new StopWatch();
+            Sorts.selectionSort(a);
+            total += sw.getElapsedMillis();
+        //}
+        return ((double)total);// / T;
+    }
+    static double sortTestBubbleSort(int N, int T){
+        long total = 0;
+        for(int i = 0; i < T; ++i){
+            Integer[] a = new Integer[N];
+            Algorithms.randomFillInteger(a, 0, N);
+            StopWatch sw = new StopWatch();
+            Sorts.bubbleSort(a);
+            total += sw.getElapsedMillis();
         }
+        return ((double)total) / T;
+    }static double sortTestShellSort(int N, int T){
+        long total = 0;
+        for(int i = 0; i < T; ++i){
+            Integer[] a = new Integer[N];
+            Algorithms.randomFillInteger(a, 0, N);
+            StopWatch sw = new StopWatch();
+            Sorts.shellSort(a);
+            total += sw.getElapsedMillis();
+        }
+        return ((double)total) / T;
     }
     public static void main(String[] args) {
-        RandomGridGen.main(10);
+
+        Integer[] a = new Integer[1000];
+        Integer[] b = new Integer[1000];
+        for(int i = 0; i < 1000; ++i){
+            int r = Algorithms.getRandomInt(0, 2);
+            a[i] = r;
+            b[i] = r;
+        }
+        Sorts.show(a);
+        Sorts.mergeSort(a);
+        Sorts.show(a);
+        System.out.println(Sorts.isSorted(a));
     }
 }

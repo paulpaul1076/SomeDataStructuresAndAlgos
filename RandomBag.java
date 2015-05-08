@@ -26,7 +26,7 @@ public class RandomBag<T> implements Iterable<T>{
 	private class RBIterator implements Iterator<T>{
 		private int curId;
 		RBIterator(){
-			Algorithms.shufftArray(data, 0, size);
+			Algorithms.shuffleArray(data, 0, size);
 		}
 		public boolean hasNext() {
 			return curId < size;

@@ -16,9 +16,9 @@ public class UF {
         }
     }
     /*add connection between p and q*/
-    public void union(int p, int q){
-        int pID = quickFind(p);
-        int qID = quickFind(q);
+    public void QFunion(int p, int q){
+        int pID = QFfind(p);
+        int qID = QFfind(q);
 
         if(qID == pID) return;
 
@@ -27,9 +27,9 @@ public class UF {
         }
         count--;
     }
-    public void quickUnion(int p, int q){
-        int i = find(p);
-        int j = find(q);
+    public void QUunion(int p, int q){
+        int i = QUfind(p);
+        int j = QUfind(q);
         if(i == j) return;
 
         id[i] = j;
@@ -37,18 +37,20 @@ public class UF {
         count--;
     }
     /*component identifier for p (0 to N-1)*/
-    public int quickFind(int p){
+    public int QFfind(int p){
         return id[p];
     }
-    public int find(int p){
+    public int QUfind(int p){
         while(p != id[p]) p = id[p];
         return p;
     }
     /*return true if p and q are in the same component*/
-    public boolean quickFindConnected(int p, int q){
-        return quickFind(p) == quickFind(q);
+    public boolean QFconncted(int p, int q){
+        return QFfind(p) == QFfind(q);
     }
-    public boolean connected(int p, int q) { return find(p) == find(q);}
+    public boolean QUconnected(int p, int q) {
+        return QUfind(p) == QUfind(q);
+    }
     /*number of components*/
     public int count(){
         return count;
@@ -61,8 +63,8 @@ public class UF {
             while (sc.hasNextInt()) {
                 int p = sc.nextInt();
                 int q = sc.nextInt();
-                if(uf.quickFindConnected(p, q)) continue;
-                uf.union(p, q);
+                if(uf.QFconncted(p, q)) continue;
+                uf.QFunion(p, q);
                 System.out.println(p + " " + q);
             }
             System.out.println(uf.count() + " components.");

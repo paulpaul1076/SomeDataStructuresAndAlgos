@@ -42,7 +42,7 @@ public class RandomQueue<T> implements Iterable<T>{
 	private class RQIterator implements Iterator<T>{
 		private int curId;
 		RQIterator(){
-			Algorithms.shufftArray(data, 0, size);
+			Algorithms.shuffleArray(data, 0, size);
 		}
 		public boolean hasNext() {
 			return curId < size;
