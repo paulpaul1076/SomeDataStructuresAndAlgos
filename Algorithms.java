@@ -55,14 +55,10 @@ public class Algorithms {
 	// can generate N! permutations
 	static <T> void shuffleArray(T[] a, int from, int to){
 		for(int i = from; i < to; ++i){
-			for(int j = i; j < to; ++j){
-				//find random
-				int randomId = getRandomInt(from, to - 1);
-				//swap
-				T temp = a[randomId];
-				a[randomId] = a[j];
-				a[j] = temp;
-			}
+			int k = i + (Math.random() * (from - i));
+			T temp = a[k];
+			a[k] = a[i];
+			a[i] = temp;
 		}
 	}
 	static int getRandomInt(int from, int to){
